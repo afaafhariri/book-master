@@ -1,11 +1,10 @@
 import NavBar from "../components/NavBar";
-
-const Home = () => {
+const Concert = () => {
   return (
     <>
       <NavBar />
-      <div></div>
+      <div>Concerts</div>
     </>
   );
 };
-export default Home;
+export default Concert;
