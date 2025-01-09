@@ -1,10 +1,10 @@
 import NavBar from "../components/NavBar";
-const Drama = () => {
+const SciFi = () => {
   return (
     <>
       <NavBar />
-      <div>Drama</div>
+      <div>SciFi</div>
     </>
   );
 };
-export default Drama;
+export default SciFi;

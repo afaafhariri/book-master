@@ -1,11 +1,11 @@
 import NavBar from "../components/NavBar";
 
-const Talks = () => {
+const Crime = () => {
   return (
     <>
       <NavBar />
-      <div>Talks</div>
+      <div>Crime</div>
     </>
   );
 };
-export default Talks;
+export default Crime;
