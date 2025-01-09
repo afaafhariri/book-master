@@ -35,22 +35,22 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li
-            className="relative"
-            onMouseEnter={() => setFictionDropDown(true)}
+            className="relative hover:text-red-600 transition duration-300 focus:text-red-600"
+            onMouseEnter={() => {
+              setFictionDropDown(true);
+              setNonFictionDropDown(false);
+            }}
           >
-            <span className="hover:text-red-600 transition duration-300 focus:text-red-600">
-              Fiction
-            </span>
+            Fiction
           </li>
-          <li>
-            <NavLink
-              onMouseEnter={() => setNonFictionDropDown(true)}
-              onMouseLeave={() => setNonFictionDropDown(false)}
-              to="#"
-              className="hover:text-red-600 transition duration-300 focus:text-red-600"
-            >
-              Non-fiction
-            </NavLink>
+          <li
+            className="relative hover:text-red-600 transition duration-300 focus:text-red-600"
+            onMouseEnter={() => {
+              setNonFictionDropDown(true);
+              setFictionDropDown(false);
+            }}
+          >
+            Non-fiction
           </li>
         </ul>
         <button
@@ -61,11 +61,21 @@ const NavBar = () => {
         </button>
       </div>
       {showFictionDropDown && (
-        <div onMouseLeave={() => setFictionDropDown(false)}>
+        <div
+          className="bg-transparent flex flex-col justify-between space-x-11 items-start mx-auto px-4 py-2 border-1 border-gray-200 shadow-md w-48 h-auto"
+          onMouseLeave={() => setFictionDropDown(false)}
+        >
           {<FictionDropDown />}
         </div>
       )}
-      {showNonFictionDropDown && <NonFictionDropDown />}
+      {showNonFictionDropDown && (
+        <div
+          className="bg-transparent flex flex-col justify-between space-x-11 items-start mx-auto px-4 py-2 border-1 border-gray-200 shadow-md w-48 h-auto"
+          onMouseLeave={() => setNonFictionDropDown(false)}
+        >
+          {<NonFictionDropDown />}
+        </div>
+      )}
     </>
   );
 };
