@@ -9,13 +9,13 @@ const NavBar = () => {
   };
   return (
     <>
-      <div className="bg-transparent mx-auto flex justify-between items-center py-6 px-8 border-b-1 border-gray-200 shadow-md">
+      <div className="bg-transparent mx-auto flex justify-between items-center py-6 px-10 border-b-1 border-gray-200 shadow-md">
         <div className="text-slate-800 text-2xl font-bold">
           <NavLink to="/">
             book<span className="text-red-600">MASTER.</span>
           </NavLink>
         </div>
-        <ul className="flex space-x-6 list-none no-underline text-slate-800">
+        <ul className="flex space-x-6 list-none no-underline text-slate-800 font-semibold">
           <li>
             <NavLink
               to="/"
@@ -78,7 +78,7 @@ const NavBar = () => {
           </li>
         </ul>
         <button
-          className="border-1 shadow-md rounded-md py-3 px-5 font-bold text-slate-800 hover:text-red-600 transition duration-300 text-sm"
+          className="border-1 shadow-md rounded-md py-3 px-5 text-sm font-bold text-slate-800 hover:text-red-600 hover:bg-red-50 transition-all duration-300"
           onClick={handleOnClick}
         >
           Sign In
