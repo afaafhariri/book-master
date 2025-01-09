@@ -78,7 +78,7 @@ const NavBar = () => {
           </li>
         </ul>
         <button
-          className="border-1 shadow-md rounded-md py-3 px-5 font-bold text-slate-800 hover:text-red-600 transition duration-300"
+          className="border-1 shadow-md rounded-md py-3 px-5 font-bold text-slate-800 hover:text-red-600 transition duration-300 text-sm"
           onClick={handleOnClick}
         >
           Sign In
