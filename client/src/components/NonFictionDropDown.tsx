@@ -2,14 +2,14 @@ import { NavLink } from "react-router-dom";
 
 const NonFictionDropDown = () => {
   return (
-    <ul className="list-none text-slate-800 font-medium text-sm gap-4">
+    <ul className="list-none text-slate-800 font-medium text-sm space-y-4">
       <li>
         <NavLink
           to="/biography"
           className={({ isActive }) =>
             isActive
               ? "text-slate-800"
-              : "hover:text-slate-800 transition duration-300"
+              : "hover:text-red-600 transition duration-300"
           }
         >
           Biography

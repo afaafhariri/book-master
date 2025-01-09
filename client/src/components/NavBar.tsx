@@ -62,7 +62,7 @@ const NavBar = () => {
       </div>
       {showFictionDropDown && (
         <div
-          className="bg-transparent flex flex-col justify-between space-x-11 items-start mx-auto px-4 py-2 border-1 border-gray-200 shadow-md w-48 h-auto"
+          className="bg-transparent flex flex-col justify-between space-x-11 items-start mx-auto px-6 py-4 border-1 border-gray-200 shadow-md w-36 h-auto z-10"
           onMouseLeave={() => setFictionDropDown(false)}
         >
           {<FictionDropDown />}
@@ -70,7 +70,7 @@ const NavBar = () => {
       )}
       {showNonFictionDropDown && (
         <div
-          className="bg-transparent flex flex-col justify-between space-x-11 items-start mx-auto px-4 py-2 border-1 border-gray-200 shadow-md w-48 h-auto"
+          className="bg-transparent flex flex-col justify-between space-x-11 items-start mx-auto px-6 py-4 border-1 border-gray-200 shadow-md w-36 h-auto z-10"
           onMouseLeave={() => setNonFictionDropDown(false)}
         >
           {<NonFictionDropDown />}

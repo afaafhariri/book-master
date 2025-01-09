@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const FictionDropDown = () => {
   return (
-    <ul className="list-none text-slate-800 font-medium text-sm gap-4">
+    <ul className="list-none text-slate-800 font-medium text-sm space-y-4">
       <li>
         <NavLink
           to="/romance"
