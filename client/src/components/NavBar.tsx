@@ -18,6 +18,18 @@ const NavBar = () => {
         <ul className="flex space-x-6 list-none no-underline text-slate-800">
           <li>
             <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-red-600"
+                  : "hover:text-red-600 transition duration-300"
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/concerts"
               className={({ isActive }) =>
                 isActive
