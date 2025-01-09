@@ -34,15 +34,13 @@ const NavBar = () => {
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              onMouseEnter={() => setFictionDropDown(true)}
-              onMouseLeave={() => setFictionDropDown(false)}
-              to="#"
-              className="hover:text-red-600 transition duration-300 focus:text-red-600"
-            >
+          <li
+            className="relative"
+            onMouseEnter={() => setFictionDropDown(true)}
+          >
+            <span className="hover:text-red-600 transition duration-300 focus:text-red-600">
               Fiction
-            </NavLink>
+            </span>
           </li>
           <li>
             <NavLink
@@ -62,7 +60,11 @@ const NavBar = () => {
           Sign In
         </button>
       </div>
-      {showFictionDropDown && <FictionDropDown />}
+      {showFictionDropDown && (
+        <div onMouseLeave={() => setFictionDropDown(false)}>
+          {<FictionDropDown />}
+        </div>
+      )}
       {showNonFictionDropDown && <NonFictionDropDown />}
     </>
   );

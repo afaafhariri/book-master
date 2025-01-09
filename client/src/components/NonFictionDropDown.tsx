@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom";
 
 const NonFictionDropDown = () => {
   return (
-    <div className="flex flex-col justify-between space-x-11 items-start mx-auto px-4 py-2 bg-white border-1 border-gray-200 shadow-md w-48 h-auto">
-      <ul className="list-none no-underline text-red-600 font-medium text-sm gap-4">
+    <div className="bg-gray-50 flex flex-col justify-between space-x-11 items-start mx-auto px-4 py-2 border-1 border-gray-200 shadow-md w-48 h-auto">
+      <ul className="list-none no-underline text-slate-800 font-medium text-sm gap-4">
         <li>
           <NavLink
             to="/biography"
@@ -22,7 +22,7 @@ const NonFictionDropDown = () => {
             className={({ isActive }) =>
               isActive
                 ? "text-slate-800"
-                : "hover:text-slate-800 transition duration-300"
+                : "hover:text-red-600 transition duration-300"
             }
           >
             Self-Help
@@ -34,7 +34,7 @@ const NonFictionDropDown = () => {
             className={({ isActive }) =>
               isActive
                 ? "text-slate-800"
-                : "hover:text-slate-800 transition duration-300"
+                : "hover:text-red-600 transition duration-300"
             }
           >
             History
@@ -46,7 +46,7 @@ const NonFictionDropDown = () => {
             className={({ isActive }) =>
               isActive
                 ? "text-slate-800"
-                : "hover:text-slate-800 transition duration-300"
+                : "hover:text-red-600 transition duration-300"
             }
           >
             Politics
