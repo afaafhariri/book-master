@@ -1,60 +1,54 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface NavItems {
   label: string;
+  link: string;
 }
 
 const navItems: NavItems[] = [
-  { label: "Adventure" },
-  { label: "Mystery" },
-  { label: "Crime & Thriller" },
-  { label: "Horror" },
-  { label: "Life" },
-  { label: "Romance" },
-  { label: "Sci-fi" },
-  { label: "Art & Culture" },
-  { label: "Politics" },
-  { label: "Finance" },
-  { label: "Lifestyle" },
-  { label: "Science & Technology" },
+  { label: "Adventure", link: "/adventure" },
+  { label: "Mystery", link: "/mystery" },
+  { label: "Crime & Thriller", link: "/crime_thriller" },
+  { label: "Horror", link: "/horror" },
+  { label: "Life", link: "/life" },
+  { label: "Romance", link: "/romance" },
+  { label: "Sci-fi", link: "/sci_fi" },
+  { label: "Arts & Culture", link: "/arts_culture" },
+  { label: "Politics", link: "/politics" },
+  { label: "Finance", link: "/finance" },
+  { label: "Lifestyle", link: "/lifestyle" },
+  { label: "Science & Technology", link: "/science_technology" },
 ];
 
 const NavBar = () => {
-  const navigate = useNavigate();
-  const handleSignInClick = () => {
-    navigate("/signin");
-  };
-
   return (
-    <>
-      <div className="bg-white relative min-w-screen px-14 py-4 flex items-center justify-between">
+    <div className="bg-white relative min-w-screen flex flex-col items-center justify-center shadow-md shadow-slate-300">
+      <div className="flex-shrink-0 mt-6">
         <NavLink to="/">
           <p className="text-blue-900 font-bold text-3xl">
             bookmaster<span className="text-red-600">.lk</span>
           </p>
         </NavLink>
-        <p className="text-2xl">Search</p>
-        <button
-          onClick={handleSignInClick}
-          className="py-2 px-4 bg-white shadow-md shadow-slate-300 hover:bg-red-50 hover:text-red-600 text-sm rounded-md transition-all duration-300
-          font-semibold"
-        >
-          Sign In
-        </button>
       </div>
-      <div className="bg-white relative min-w-screen px-14 py-4 flex items-center justify-between shadow-md shadow-slate-300">
+      <div className="relative min-w-full px-14 py-4 flex items-center justify-between shadow-md shadow-slate-300">
         <ul className="flex space-x-8 text-sm text-blue-900 mx-auto">
           {navItems.map((item) => (
-            <li
-              className="hover:text-red-600 transition-all duration-500 font-medium"
-              key={item.label}
-            >
-              {item.label}
+            <li className="font-medium" key={item.label}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-red-600"
+                    : "hover:text-red-600 transition-all duration-500 "
+                }
+                to={item.link}
+              >
+                {item.label}
+              </NavLink>
             </li>
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 export default NavBar;
