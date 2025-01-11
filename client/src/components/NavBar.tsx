@@ -40,6 +40,9 @@ const NavBar = () => {
               setFictionDropDown(true);
               setNonFictionDropDown(false);
             }}
+            onMouseLeave={() => {
+              setFictionDropDown(false);
+            }}
           >
             Fiction
           </li>
