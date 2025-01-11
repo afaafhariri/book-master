@@ -2,11 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NoRoot from "./pages/NoRoot";
 import Romance from "./pages/Romance";
-import Mystery from "./pages/Mystery";
 import SciFi from "./pages/SciFi";
 import Adventure from "./pages/Adventure";
 import Crime from "./pages/Crime";
-import Test from "./pages/Test";
 
 function App() {
   return (
@@ -16,11 +14,9 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="*" element={<NoRoot />}></Route>
           <Route path="/romance" element={<Romance />}></Route>
-          <Route path="/mystery" element={<Mystery />}></Route>
-          <Route path="/sci-fi" element={<SciFi />}></Route>
+          <Route path="/sci_fi" element={<SciFi />}></Route>
           <Route path="/adventure" element={<Adventure />}></Route>
-          <Route path="/crime" element={<Crime />}></Route>
-          <Route path="/testpage" element={<Test />} />
+          <Route path="/crime_thriller" element={<Crime />}></Route>
         </Routes>
       </BrowserRouter>
     </>
