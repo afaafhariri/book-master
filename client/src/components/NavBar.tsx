@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 
 interface NavItems {
   label: string;
@@ -8,7 +8,6 @@ interface NavItems {
 
 const navItems: NavItems[] = [
   { label: "Adventure", link: "/adventure" },
-  { label: "Mystery", link: "/mystery" },
   { label: "Crime & Thriller", link: "/crime_thriller" },
   { label: "Horror", link: "/horror" },
   { label: "Life", link: "/life" },
@@ -19,6 +18,7 @@ const navItems: NavItems[] = [
   { label: "Finance", link: "/finance" },
   { label: "Lifestyle", link: "/lifestyle" },
   { label: "Science & Technology", link: "/science_technology" },
+  { label: "History", link: "/history" },
 ];
 
 const NavBar = () => {
@@ -52,7 +52,7 @@ const NavBar = () => {
               to="/cart"
               className="hover:text-red-600 transition-all duration-500"
             >
-              <ShoppingCart size={24} strokeWidth={1} />
+              <ShoppingBag size={20} strokeWidth={2} />
             </NavLink>
           </li>
         </ul>
