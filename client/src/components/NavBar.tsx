@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { ShoppingCart } from "lucide-react";
 
 interface NavItems {
   label: string;
@@ -46,6 +47,14 @@ const NavBar = () => {
               </NavLink>
             </li>
           ))}
+          <li>
+            <NavLink
+              to="/cart"
+              className="hover:text-red-600 transition-all duration-500"
+            >
+              <ShoppingCart size={24} strokeWidth={1} />
+            </NavLink>
+          </li>
         </ul>
       </div>
     </div>
