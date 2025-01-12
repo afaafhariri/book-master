@@ -12,6 +12,6 @@ bookRouter.post("/", addNewBook);
 bookRouter.get("/:id", getOneBook);
 bookRouter.get("/", getAllBooks);
 bookRouter.put("/:id", updateBook);
-bookRouter.delete("id", deleteBook);
+bookRouter.delete("/:id", deleteBook);
 
 export default bookRouter;
