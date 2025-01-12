@@ -8,9 +8,9 @@ import {
 } from "../controllers/bookController";
 
 const bookRouter = express.Router();
-bookRouter.post("/addbook", addNewBook);
+bookRouter.post("/", addNewBook);
 bookRouter.get("/:id", getOneBook);
-bookRouter.get("/getallbooks", getAllBooks);
+bookRouter.get("/", getAllBooks);
 bookRouter.put("/:id", updateBook);
 bookRouter.delete("id", deleteBook);
 
