@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const bookRoutes_1 = __importDefault(require("./routes/bookRoutes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
@@ -21,3 +22,4 @@ mongoose_1.default
     .catch((e) => {
     console.error("Failed to connect to database", e);
 });
+app.use("/books", bookRoutes_1.default);

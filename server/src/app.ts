@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import bookRouter from "./routes/bookRoutes";
 
 dotenv.config();
 const app = express();
@@ -18,3 +19,5 @@ mongoose
   .catch((e) => {
     console.error("Failed to connect to database", e);
   });
+
+app.use("/books", bookRouter);
