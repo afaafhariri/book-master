@@ -10,7 +10,7 @@ interface Book extends Document {
   price: number;
   genre: string;
   publisher: string;
-  isbn: string;
+  isbn: number;
   year: number;
   views: number;
   inStock: number;
@@ -27,7 +27,7 @@ const BookSchema = new Schema(
     price: { type: Number, required: true },
     genre: { type: String, required: true },
     publisher: { type: String, required: true },
-    isbn: { type: String, required: true },
+    isbn: { type: Number, required: true },
     year: { type: Number, required: true },
     views: { type: Number, required: true },
     inStock: { type: Number, required: true },
