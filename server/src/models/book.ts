@@ -15,6 +15,8 @@ interface Book extends Document {
   publish_date: Date;
   views: number;
   inStock: number;
+  ratings?: number[];
+  getAverageRating?: () => number;
 }
 
 const BookSchema = new Schema(
@@ -33,11 +35,24 @@ const BookSchema = new Schema(
     publish_date: { type: Date, required: true },
     views: { type: Number, required: true },
     inStock: { type: Number, required: true },
+    ratings: {
+      type: [Number],
+      required: false,
+      default: [],
+    },
   },
   {
     timestamps: true,
   }
 );
+
+BookSchema.methods.getAverageRating = function (): number {
+  if (this.ratings.length === 0) return 0;
+  return (
+    this.ratings.reduce((acc: number, val: number) => acc + val, 0) /
+    this.ratings.length
+  );
+};
 
 const BookModel = model<Book>("Book", BookSchema);
 export default BookModel;

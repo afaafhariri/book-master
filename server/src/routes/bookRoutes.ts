@@ -5,13 +5,16 @@ import {
   getAllBooks,
   updateBook,
   deleteBook,
+  deleteAllBooks,
+  addRating,
 } from "../controllers/bookController";
 
 const bookRouter = express.Router();
-bookRouter.post("/", addNewBook);
-bookRouter.get("/:id", getOneBook);
+bookRouter.post("/addbook", addNewBook);
+bookRouter.get("/getbook/:id", getOneBook);
 bookRouter.get("/", getAllBooks);
-bookRouter.put("/:id", updateBook);
-bookRouter.delete("/:id", deleteBook);
-
+bookRouter.put("/update/:id", updateBook);
+bookRouter.delete("/delete/:id", deleteBook);
+bookRouter.delete("/deletebooks", deleteAllBooks);
+bookRouter.post("/addrating/:id", addRating);
 export default bookRouter;
