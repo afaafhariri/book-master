@@ -12,7 +12,7 @@ interface Book extends Document {
   genre: string;
   publisher: string;
   isbn: number;
-  year: number;
+  publish_date: Date;
   views: number;
   inStock: number;
 }
@@ -30,7 +30,7 @@ const BookSchema = new Schema(
     genre: { type: String, required: true },
     publisher: { type: String, required: true },
     isbn: { type: Number, required: true },
-    year: { type: Number, required: true },
+    publish_date: { type: Date, required: true },
     views: { type: Number, required: true },
     inStock: { type: Number, required: true },
   },
