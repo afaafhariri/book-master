@@ -23,7 +23,7 @@ const navItems: NavItems[] = [
 
 const NavBar = () => {
   return (
-    <div className="bg-white relative min-w-screen flex flex-col items-center justify-center shadow-md shadow-slate-300">
+    <nav className="bg-white relative min-w-screen flex flex-col items-center justify-center shadow-md shadow-slate-300">
       <div className="flex-shrink-0 mt-6">
         <NavLink to="/">
           <p className="text-blue-900 font-bold text-3xl">
@@ -57,7 +57,7 @@ const NavBar = () => {
           </li>
         </ul>
       </div>
-    </div>
+    </nav>
   );
 };
 export default NavBar;
