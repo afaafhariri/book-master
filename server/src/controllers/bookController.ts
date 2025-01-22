@@ -60,7 +60,6 @@ export const getAllBooks = async (
   try {
     const books = await BookModel.find();
 
-    // Add average rating to each book
     const booksWithRatings = books.map((book) => {
       const averageRating =
         book.ratings && book.ratings.length > 0

@@ -3,6 +3,7 @@ import { Schema, Document, model } from "mongoose";
 interface Book extends Document {
   name: string;
   description?: string;
+  image: string;
   author: {
     firstname: string;
     middlename?: string;
@@ -23,6 +24,7 @@ const BookSchema = new Schema(
   {
     name: { type: String, required: true },
     description: { type: String, required: false },
+    image: { type: String, required: true },
     author: {
       firstname: { type: String, required: true },
       middlename: { type: String, required: false },
