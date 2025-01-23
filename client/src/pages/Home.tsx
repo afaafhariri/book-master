@@ -58,7 +58,9 @@ const Home: React.FC = () => {
                 alt={book.name}
                 className="w-full h-48 object-contain bg-gray-100"
               />
-              <p className="font-semibold text-gray-800 mt-4">{book.name}</p>
+              <p className="font-semibold text-gray-800 mt-4 overflow-hidden whitespace-nowrap text-clip">
+                {book.name}
+              </p>
               <p className="text-sm text-gray-600">
                 by {`${book.author.firstname} ${book.author.lastname || ""}`}
               </p>
