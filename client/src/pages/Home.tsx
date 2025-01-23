@@ -76,7 +76,7 @@ const Home: React.FC = () => {
         <div className="mt-6 text-center flex items-center justify-end">
           <button
             onClick={toggleExpanded}
-            className="text-blue-900 font-medium px-4 py-2 border border-blue-900 hover:text-red-600 hover:border-red-600 transition-all duration-500"
+            className="text-blue-900 font-medium text-sm px-4 py-2 border border-blue-900 hover:text-red-600 hover:border-red-600 transition-all duration-500"
           >
             {expanded ? "Show Less" : "Show More"}
           </button>
