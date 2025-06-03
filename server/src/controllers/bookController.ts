@@ -111,6 +111,10 @@ export const updateBook = async (
     }
 
     res.status(200).json(updatedBook);
+    console.log(`Updated book: ${updatedBook.name}`);
+    console.log(
+      `Author: ${updatedBook.author.firstname} ${updatedBook.author.lastname}`
+    );
   } catch (error) {
     res.status(400).json({ error });
   }
