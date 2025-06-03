@@ -183,6 +183,12 @@ export const addRating = async (req: Request, res: Response): Promise<void> => {
     await book.save();
 
     res.status(200).json({ message: "Rating added successfully", book });
+    console.log(`Added rating to book: ${book.name}`);
+    console.log(
+      `New average rating: ${
+        book.ratings.reduce((a, b) => a + b, 0) / book.ratings.length
+      }`
+    );
   } catch (error) {
     res.status(500).json({ error });
   }
