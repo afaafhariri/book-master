@@ -132,6 +132,10 @@ export const deleteBook = async (
     }
 
     res.status(200).json({ message: "Successfully deleted the book" });
+    console.log(`Deleted book: ${deletedBook.name}`);
+    console.log(
+      `Author: ${deletedBook.author.firstname} ${deletedBook.author.lastname}`
+    );
   } catch (error) {
     res.status(500).json({ error });
   }
