@@ -52,6 +52,7 @@ export const getOneBook = async (
         : 0;
 
     res.status(200).json({ ...fetchedBook.toObject(), averageRating });
+    console.log(`Fetched book: ${fetchedBook.name}`);
   } catch (error) {
     res.status(500).json({ error });
   }
