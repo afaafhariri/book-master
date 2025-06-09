@@ -24,9 +24,8 @@ export const addNewBook = async (
 
     const savedBook = await newBook.save();
     res.status(201).json(savedBook);
-    console.log("New book added:", savedBook.name);
     console.log(
-      `Author: ${savedBook.author.firstname} ${savedBook.author.lastname}`
+      `Added new book: ${savedBook.name} by ${savedBook.author.firstname} ${savedBook.author.lastname}`
     );
   } catch (error) {
     res.status(400).json({ error });
