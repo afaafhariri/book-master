@@ -154,6 +154,7 @@ export const deleteAllBooks = async (
     res
       .status(200)
       .json({ message: `${result.deletedCount} books successfully deleted` });
+    console.log(`${result.deletedCount} books deleted successfully`);
   } catch (error) {
     res.status(500).json({ error });
   }
