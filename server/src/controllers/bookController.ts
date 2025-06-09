@@ -43,8 +43,6 @@ export const getOneBook = async (
       res.status(404).json({ message: "Cannot find such a book" });
       return;
     }
-
-    // Calculate average rating
     const averageRating =
       fetchedBook.ratings && fetchedBook.ratings.length > 0
         ? fetchedBook.ratings.reduce((a, b) => a + b, 0) /
@@ -52,7 +50,9 @@ export const getOneBook = async (
         : 0;
 
     res.status(200).json({ ...fetchedBook.toObject(), averageRating });
-    console.log(`Fetched book: ${fetchedBook.name}`);
+    console.log(
+      `Fetched book: ${fetchedBook.name} by ${fetchedBook.author.firstname} ${fetchedBook.author.lastname}`
+    );
   } catch (error) {
     res.status(500).json({ error });
   }
