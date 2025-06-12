@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaPlus } from "react-icons/fa";
-// import BookCard from "./BookCard";
-// import BookFormModal from "./BookFormModal";
-
+import BookCard from "../components/BookCard";
+import BookFormModal from "../components/BookFormModal";
 import type { Book } from "../Interfaces/BookI";
 
 export default function BookList() {
