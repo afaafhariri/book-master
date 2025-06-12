@@ -17,7 +17,7 @@ export default function BookList() {
   const fetchBooks = async () => {
     try {
       const res = await axios.get(API_URL);
-      setBooks(res.data);
+      setBooks(res.data as Book[]);
     } catch (error) {
       console.error("Error fetching books", error);
     } finally {
