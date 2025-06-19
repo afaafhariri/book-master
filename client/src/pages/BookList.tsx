@@ -11,14 +11,14 @@ export default function BookList() {
   const [showForm, setShowForm] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
-  const API_URL = "http://localhost:3000/books";
+  const API_URL = "http://localhost:5000/books";
 
   const fetchBooks = async () => {
     try {
       const res = await axios.get(API_URL);
       setBooks(res.data as Book[]);
     } catch (error) {
-      console.error("Error fetching books", error);
+      console.error("Error fetching books:", error);
     } finally {
       setLoading(false);
     }
@@ -29,27 +29,29 @@ export default function BookList() {
   }, []);
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this book?")) return;
     try {
+      console.log("Deleting book with ID:", id);
       await axios.delete(`${API_URL}/${id}`);
-      setBooks(books.filter((book) => book._id !== id));
+      setBooks((prev) => prev.filter((book) => book._id !== id));
     } catch (error) {
-      console.error("Failed to delete book", error);
+      console.error("Failed to delete book:", error);
     }
   };
 
   const handleFormSubmit = async (formData: Book) => {
     try {
       if (formData._id) {
+        console.log("Updating book:", formData);
         await axios.put(`${API_URL}/${formData._id}`, formData);
       } else {
+        console.log("Adding new book:", formData);
         await axios.post(API_URL, formData);
       }
       setShowForm(false);
       setSelectedBook(null);
       fetchBooks();
     } catch (error) {
-      console.error("Error saving book", error);
+      console.error("Failed to submit form:", error);
     }
   };
 
@@ -59,7 +61,7 @@ export default function BookList() {
   };
 
   return (
-    <div className="p-6 relative">
+    <div className="p-6">
       <h1 className="text-3xl font-bold mb-4">Books List</h1>
       <button
         onClick={() => openForm()}
@@ -67,6 +69,7 @@ export default function BookList() {
       >
         <FaPlus /> Add New Book
       </button>
+
       {loading ? (
         <p>Loading books...</p>
       ) : (
