@@ -11,7 +11,7 @@ export default function BookList() {
   const [showForm, setShowForm] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
-  const API_URL = "http://localhost:5000/books";
+  const API_URL = "http://localhost:3000/books";
 
   const fetchBooks = async () => {
     try {
