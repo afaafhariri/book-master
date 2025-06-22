@@ -81,12 +81,6 @@ export default function BookList() {
             <div className="flex justify-end gap-3 mt-4">
               <button
                 className="text-blue-600 hover:text-blue-800"
-                onClick={() => alert("Update functionality not implemented")}
-              >
-                <FaEdit />
-              </button>
-              <button
-                className="text-blue-600 hover:text-blue-800"
                 onClick={() => setEditTarget(book)}
               >
                 <FaEdit />
