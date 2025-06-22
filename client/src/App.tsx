@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BookList from "./pages/BookList";
+import BookForm from "./pages/BookForm";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<BookList />}></Route>
+          <Route path="/" element={<BookForm />}></Route>
         </Routes>
       </BrowserRouter>
     </>
