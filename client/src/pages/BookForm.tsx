@@ -55,9 +55,20 @@ export default function BookForm() {
       await axios.post("http://localhost:5000/api/books", formData);
       alert("Book added successfully!");
       setFormData(initialState);
-    } catch (err: any) {
-      console.error("Error:", err.response?.data || err.message);
-      alert("Error adding book");
+    } catch (err: unknown) {
+      if (
+        typeof err === "object" &&
+        err !== null &&
+        "response" in err &&
+        typeof (err as AxiosError).response === "object"
+      ) {
+        const res = (err as AxiosError).response;
+        console.error("Error:", res?.data?.message || "Unknown error");
+        alert(res?.data?.message || "Error adding book");
+      } else {
+        console.error("Unexpected error:", err);
+        alert("Unexpected error occurred");
+      }
     }
   };
 
@@ -152,7 +163,7 @@ export default function BookForm() {
             </div>
           </div>
 
-          {/* Numeric Info */}
+          {/* Numbers */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <input
               name="price"
