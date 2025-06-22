@@ -41,16 +41,16 @@ export default function BookList() {
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6">Book List</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
         {books.map((book) => (
           <div
             key={book._id}
-            className="bg-white shadow-md rounded-lg p-4 relative"
+            className="bg-white shadow-md rounded-lg p-4 w-64 relative"
           >
             <img
               src={book.image}
               alt={book.name}
-              className="w-full h-40 object-cover rounded-md mb-3"
+              className="w-full h-80 object-cover object-top rounded-md mb-3"
             />
             <h3 className="text-xl font-semibold mb-1">{book.name}</h3>
             <p className="text-sm text-gray-500 mb-2">{book.genre}</p>
