@@ -4,21 +4,27 @@ import { FaPlus } from "react-icons/fa";
 import { Book } from "../Interfaces/iBook";
 import { Author } from "../Interfaces/iAuthor";
 
+const initialState: Book = {
+  name: "",
+  description: "",
+  image: "",
+  author: {
+    firstname: "",
+    middlename: "",
+    lastname: "",
+  },
+  price: 0,
+  genre: "",
+  publisher: "",
+  isbn: 0,
+  publish_date: "",
+  views: 0,
+  inStock: 0,
+  ratings: [],
+};
+
 export default function BookForm() {
-  const [formData, setFormData] = useState<Book>({
-    name: "",
-    description: "",
-    image: "",
-    author: { firstname: "", middlename: "", lastname: "" },
-    price: 0,
-    genre: "",
-    publisher: "",
-    isbn: 0,
-    publish_date: "",
-    views: 0,
-    inStock: 0,
-    ratings: [],
-  });
+  const [formData, setFormData] = useState<Book>(initialState);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,7 +32,7 @@ export default function BookForm() {
     const { name, value } = e.target;
 
     if (name.startsWith("author.")) {
-      const key = name.split(".")[1] as keyof Boo;
+      const key = name.split(".")[1] as keyof Author;
       setFormData((prev) => ({
         ...prev,
         author: {
@@ -34,15 +40,10 @@ export default function BookForm() {
           [key]: value,
         },
       }));
+    } else if (["price", "isbn", "views", "inStock"].includes(name)) {
+      setFormData({ ...formData, [name]: Number(value) });
     } else if (name === "ratings") {
       setFormData({ ...formData, ratings: value.split(",").map(Number) });
-    } else if (
-      name === "price" ||
-      name === "isbn" ||
-      name === "views" ||
-      name === "inStock"
-    ) {
-      setFormData({ ...formData, [name]: Number(value) });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -53,29 +54,16 @@ export default function BookForm() {
     try {
       await axios.post("http://localhost:5000/api/books", formData);
       alert("Book added successfully!");
-      setFormData({
-        name: "",
-        description: "",
-        image: "",
-        author: { firstname: "", middlename: "", lastname: "" },
-        price: 0,
-        genre: "",
-        publisher: "",
-        isbn: 0,
-        publish_date: "",
-        views: 0,
-        inStock: 0,
-        ratings: [],
-      });
-    } catch (error) {
-      console.error(error);
-      alert("Failed to add book.");
+      setFormData(initialState);
+    } catch (err) {
+      console.error(err);
+      alert("Error adding book");
     }
   };
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-white shadow-md rounded-xl">
-      <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+      <h2 className="text-2xl font-bold flex items-center gap-2 mb-4">
         <FaPlus /> Add New Book
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -107,8 +95,7 @@ export default function BookForm() {
         <div className="grid grid-cols-3 gap-2">
           <input
             name="author.firstname"
-            type="text"
-            placeholder="Author First Name"
+            placeholder="First Name"
             value={formData.author.firstname}
             onChange={handleChange}
             className="input"
@@ -116,7 +103,6 @@ export default function BookForm() {
           />
           <input
             name="author.middlename"
-            type="text"
             placeholder="Middle Name"
             value={formData.author.middlename}
             onChange={handleChange}
@@ -124,7 +110,6 @@ export default function BookForm() {
           />
           <input
             name="author.lastname"
-            type="text"
             placeholder="Last Name"
             value={formData.author.lastname}
             onChange={handleChange}
@@ -142,7 +127,6 @@ export default function BookForm() {
         />
         <input
           name="genre"
-          type="text"
           placeholder="Genre"
           value={formData.genre}
           onChange={handleChange}
@@ -151,7 +135,6 @@ export default function BookForm() {
         />
         <input
           name="publisher"
-          type="text"
           placeholder="Publisher"
           value={formData.publisher}
           onChange={handleChange}
@@ -187,7 +170,7 @@ export default function BookForm() {
         <input
           name="inStock"
           type="number"
-          placeholder="Stock Count"
+          placeholder="In Stock"
           value={formData.inStock}
           onChange={handleChange}
           className="input"
