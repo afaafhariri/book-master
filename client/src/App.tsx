@@ -8,12 +8,10 @@ function App() {
     <>
       <BrowserRouter>
         <NavBar />
-        <main className="p-6">
-          <Routes>
-            <Route path="/books" element={<BookList />} />
-            <Route path="/add-book" element={<BookForm />} />
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/books" element={<BookList />} />
+          <Route path="/add-book" element={<BookForm />} />
+        </Routes>
       </BrowserRouter>
     </>
   );
