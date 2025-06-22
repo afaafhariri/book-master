@@ -49,6 +49,25 @@ export default function BookForm() {
     }
   };
 
+  const handleError = (err: unknown) => {
+    if (
+      typeof err === "object" &&
+      err !== null &&
+      "isAxiosError" in err &&
+      (err as any).isAxiosError === true
+    ) {
+      const error = err as typeof axios.AxiosError;
+      console.error(
+        "Axios error:",
+        error.response?.data?.message || error.message
+      );
+      alert(error.response?.data?.message || "Something went wrong.");
+    } else {
+      console.error("Unknown error:", err);
+      alert("Unexpected error occurred.");
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -56,19 +75,7 @@ export default function BookForm() {
       alert("Book added successfully!");
       setFormData(initialState);
     } catch (err: unknown) {
-      if (
-        typeof err === "object" &&
-        err !== null &&
-        "response" in err &&
-        typeof (err as AxiosError).response === "object"
-      ) {
-        const res = (err as AxiosError).response;
-        console.error("Error:", res?.data?.message || "Unknown error");
-        alert(res?.data?.message || "Error adding book");
-      } else {
-        console.error("Unexpected error:", err);
-        alert("Unexpected error occurred");
-      }
+      handleError(err);
     }
   };
 
