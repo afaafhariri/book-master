@@ -1,30 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { FaPlus } from "react-icons/fa";
-
-interface Author {
-  firstname: string;
-  middlename?: string;
-  lastname?: string;
-}
-
-interface BookFormData {
-  name: string;
-  description?: string;
-  image: string;
-  author: Author;
-  price: number;
-  genre: string;
-  publisher: string;
-  isbn: number;
-  publish_date: string;
-  views: number;
-  inStock: number;
-  ratings?: number[];
-}
+import { Book } from "../Interfaces/iBook";
+import { Author } from "../Interfaces/iAuthor";
 
 export default function BookForm() {
-  const [formData, setFormData] = useState<BookFormData>({
+  const [formData, setFormData] = useState<Book>({
     name: "",
     description: "",
     image: "",
@@ -45,7 +26,7 @@ export default function BookForm() {
     const { name, value } = e.target;
 
     if (name.startsWith("author.")) {
-      const key = name.split(".")[1] as keyof Author;
+      const key = name.split(".")[1] as keyof Boo;
       setFormData((prev) => ({
         ...prev,
         author: {

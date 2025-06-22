@@ -1,9 +1,4 @@
-export interface Author {
-  firstname: string;
-  middlename?: string;
-  lastname?: string;
-}
-
+import { Author } from "./iAuthor";
 export interface Book {
   name: string;
   description?: string;

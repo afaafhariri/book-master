@@ -1,5 +1,5 @@
 import { FaStar, FaTrash, FaEdit } from "react-icons/fa";
-import type { Book } from "../Interfaces/BookI";
+import type { Book } from "../Interfaces/iBook";
 
 interface Props {
   book: Book;
