@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Book } from "../Interfaces/iBook";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import BookFormModal from "../components/BookFormModal";
 
 export default function BookList() {
   const [books, setBooks] = useState<Book[]>([]);
   const [deleteTarget, setDeleteTarget] = useState<Book | null>(null);
   const [loading, setLoading] = useState(true);
+  const [editTarget, setEditTarget] = useState<Book | null>(null);
 
   const fetchBooks = async () => {
     try {
@@ -16,6 +18,21 @@ export default function BookList() {
       console.error("Failed to fetch books", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleUpdate = async (updated: Book) => {
+    try {
+      const res = await axios.put<Book>(
+        `http://localhost:3000/books/update/${updated._id}`,
+        updated
+      );
+      setBooks((prev) =>
+        prev.map((b) => (b._id === updated._id ? res.data : b))
+      );
+      setEditTarget(null);
+    } catch (err) {
+      console.error("Failed to update book", err);
     }
   };
 
@@ -69,6 +86,12 @@ export default function BookList() {
                 <FaEdit />
               </button>
               <button
+                className="text-blue-600 hover:text-blue-800"
+                onClick={() => setEditTarget(book)}
+              >
+                <FaEdit />
+              </button>
+              <button
                 className="text-red-600 hover:text-red-800"
                 onClick={() => setDeleteTarget(book)}
               >
@@ -104,6 +127,13 @@ export default function BookList() {
             </div>
           </div>
         </div>
+      )}
+      {editTarget && (
+        <BookFormModal
+          book={editTarget}
+          onClose={() => setEditTarget(null)}
+          onSubmit={handleUpdate}
+        />
       )}
     </div>
   );
