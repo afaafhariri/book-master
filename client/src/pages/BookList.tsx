@@ -10,9 +10,7 @@ export default function BookList() {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get<Book[]>(
-        "http://localhost:5000/api/books"
-      );
+      const response = await axios.get<Book[]>("http://localhost:3000/books/");
       setBooks(response.data);
     } catch (err) {
       console.error("Failed to fetch books", err);
@@ -23,7 +21,7 @@ export default function BookList() {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/books/${id}`);
+      await axios.delete(`http://localhost:3000/books/delete/${id}`);
       setBooks((prev) => prev.filter((book) => book._id !== id));
       setDeleteTarget(null);
     } catch (err) {
