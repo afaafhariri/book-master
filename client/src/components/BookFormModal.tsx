@@ -1,169 +1,157 @@
-import { FaTimes } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import type { Book } from "../Interfaces/iBook";
+import { Book } from "../Interfaces/iBook";
+import { FaTimes } from "react-icons/fa";
 
 interface Props {
   book: Book | null;
   onClose: () => void;
-  onSubmit: (book: Book) => void;
+  onSubmit: (updated: Book) => void;
 }
 
 export default function BookFormModal({ book, onClose, onSubmit }: Props) {
-  const [formData, setFormData] = useState<Book>({
-    name: "",
-    description: "",
-    image: "",
-    author: { firstname: "", lastname: "" },
-    price: 0,
-    genre: "",
-    publisher: "",
-    isbn: 0,
-    publish_date: "",
-    views: 0,
-    inStock: 0,
-    ratings: [],
-  });
+  const [formData, setFormData] = useState<Book | null>(null);
 
   useEffect(() => {
     if (book) setFormData(book);
   }, [book]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    if (name.startsWith("author.")) {
-      const key = name.split(".")[1];
-      setFormData({
-        ...formData,
-        author: { ...formData.author, [key]: value },
-      });
-    } else {
-      setFormData({ ...formData, [name]: value });
+
+    if (formData) {
+      if (name.startsWith("author.")) {
+        const key = name.split(".")[1];
+        setFormData({
+          ...formData,
+          author: {
+            ...formData.author,
+            [key]: value,
+          },
+        });
+      } else if (["price", "isbn", "views", "inStock"].includes(name)) {
+        setFormData({ ...formData, [name]: Number(value) });
+      } else {
+        setFormData({ ...formData, [name]: value });
+      }
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(formData);
+  const handleSubmit = () => {
+    if (formData) onSubmit(formData);
   };
+
+  if (!formData) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-2xl relative">
+      <div className="bg-white rounded-lg p-6 w-full max-w-2xl relative">
         <button
-          className="absolute top-2 right-2 text-gray-600 hover:text-black"
+          className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
           onClick={onClose}
         >
           <FaTimes />
         </button>
-        <h2 className="text-2xl font-bold mb-4">
-          {book ? "Edit Book" : "Add New Book"}
-        </h2>
-        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+        <h2 className="text-xl font-bold mb-4">Update Book</h2>
+        <div className="grid grid-cols-2 gap-4">
           <input
-            type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Book Name"
-            required
-            className="p-2 border rounded"
+            placeholder="Name"
+            className="input"
           />
           <input
-            type="text"
             name="image"
             value={formData.image}
             onChange={handleChange}
             placeholder="Image URL"
-            required
-            className="p-2 border rounded"
+            className="input"
           />
           <input
-            type="text"
-            name="author.firstname"
-            value={formData.author.firstname}
-            onChange={handleChange}
-            placeholder="Author Firstname"
-            required
-            className="p-2 border rounded"
-          />
-          <input
-            type="text"
-            name="author.lastname"
-            value={formData.author.lastname || ""}
-            onChange={handleChange}
-            placeholder="Author Lastname"
-            className="p-2 border rounded"
-          />
-          <input
-            type="text"
             name="genre"
             value={formData.genre}
             onChange={handleChange}
             placeholder="Genre"
-            className="p-2 border rounded"
+            className="input"
           />
           <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            placeholder="Price"
-            className="p-2 border rounded"
-          />
-          <input
-            type="text"
             name="publisher"
             value={formData.publisher}
             onChange={handleChange}
             placeholder="Publisher"
-            className="p-2 border rounded"
+            className="input"
           />
           <input
+            name="price"
+            value={formData.price}
             type="number"
+            onChange={handleChange}
+            placeholder="Price"
+            className="input"
+          />
+          <input
             name="isbn"
             value={formData.isbn}
+            type="number"
             onChange={handleChange}
             placeholder="ISBN"
-            className="p-2 border rounded"
+            className="input"
           />
           <input
-            type="date"
-            name="publish_date"
-            value={formData.publish_date}
-            onChange={handleChange}
-            className="p-2 border rounded"
-          />
-          <input
-            type="number"
             name="views"
             value={formData.views}
+            type="number"
             onChange={handleChange}
             placeholder="Views"
-            className="p-2 border rounded"
+            className="input"
           />
           <input
-            type="number"
             name="inStock"
             value={formData.inStock}
+            type="number"
             onChange={handleChange}
             placeholder="In Stock"
-            className="p-2 border rounded"
+            className="input"
           />
           <input
-            type="text"
-            name="description"
-            value={formData.description || ""}
+            name="publish_date"
+            value={formData.publish_date.toString().slice(0, 10)}
+            type="date"
             onChange={handleChange}
-            placeholder="Description"
-            className="p-2 border rounded col-span-2"
+            className="input"
           />
-          <button
-            type="submit"
-            className="col-span-2 bg-blue-500 text-white py-2 rounded-xl"
-          >
-            {book ? "Update Book" : "Add Book"}
-          </button>
-        </form>
+        </div>
+        <div className="grid grid-cols-3 gap-4 mt-4">
+          <input
+            name="author.firstname"
+            value={formData.author.firstname}
+            onChange={handleChange}
+            placeholder="Author First Name"
+            className="input"
+          />
+          <input
+            name="author.middlename"
+            value={formData.author.middlename || ""}
+            onChange={handleChange}
+            placeholder="Author Middle Name"
+            className="input"
+          />
+          <input
+            name="author.lastname"
+            value={formData.author.lastname || ""}
+            onChange={handleChange}
+            placeholder="Author Last Name"
+            className="input"
+          />
+        </div>
+        <button
+          onClick={handleSubmit}
+          className="mt-6 w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+        >
+          Save Changes
+        </button>
       </div>
     </div>
   );

@@ -41,7 +41,7 @@ export default function BookList() {
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6">Book List</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 justify-items-center">
         {books.map((book) => (
           <div
             key={book._id}
