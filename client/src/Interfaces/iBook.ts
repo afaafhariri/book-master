@@ -1,5 +1,6 @@
 import { Author } from "./iAuthor";
 export interface Book {
+  _id: string;
   name: string;
   description?: string;
   image: string;
