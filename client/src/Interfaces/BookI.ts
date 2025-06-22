@@ -5,7 +5,6 @@ export interface Author {
 }
 
 export interface Book {
-  _id?: string;
   name: string;
   description?: string;
   image: string;
@@ -17,6 +16,5 @@ export interface Book {
   publish_date: string;
   views: number;
   inStock: number;
-  ratings: number[];
-  averageRating?: number;
+  ratings?: number[];
 }
