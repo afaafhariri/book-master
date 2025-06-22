@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import type { AxiosError } from "axios";
 import { FaPlus } from "react-icons/fa";
 import type { Book } from "../Interfaces/iBook";
 import type { Author } from "../Interfaces/iAuthor";
 
 const initialState: Book = {
+  _id: "",
   name: "",
   description: "",
   image: "",
@@ -54,9 +56,9 @@ export default function BookForm() {
       typeof err === "object" &&
       err !== null &&
       "isAxiosError" in err &&
-      (err as any).isAxiosError === true
+      (err as { isAxiosError?: boolean }).isAxiosError === true
     ) {
-      const error = err as typeof axios.AxiosError;
+      const error = err as AxiosError;
       console.error(
         "Axios error:",
         error.response?.data?.message || error.message
