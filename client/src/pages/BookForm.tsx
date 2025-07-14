@@ -141,19 +141,25 @@ export default function BookForm() {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call - replace with actual axios call
-      console.log("Submitting form data:", formData);
+      console.log("Submitting to:", "http://localhost:3000/books/addbook");
+      console.log("Form data:", formData);
 
-      // Uncomment this when you have your API ready:
-      // await axios.post("http://localhost:5000/api/books", formData);
+      const response = await axios.post(
+        "http://localhost:3000/books/addbook",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      // Simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log("Server response:", response.data);
 
       alert("Book added successfully!");
       setFormData(initialState);
       setRatingsInput("");
-    } catch (err: unknown) {
+    } catch (err) {
       handleError(err);
     } finally {
       setIsSubmitting(false);
