@@ -79,13 +79,13 @@ Create `.env` files in each folder:
 
 ```dotenv
 MONGO_URI=<your-mongodb-connection-string>
-PORT=5555
+PORT=3000
 ```
 
 ### Frontend (`client/.env`)
 
 ```dotenv
-VITE_API_URL=http://localhost:5555
+VITE_API_URL=http://localhost:3000
 ```
 
 ## Running the App
@@ -97,7 +97,7 @@ cd server
 npm run dev
 ```
 
-Server runs on `http://localhost:5555`.
+Server runs on `http://localhost:3000`.
 
 ### Frontend
 
@@ -133,13 +133,13 @@ Frontend runs on `http://localhost:5173` (default Vite port).
 
 Base URL: `http://localhost:5555/books`
 
-- `POST /books` – Create a new book.
-- `GET /books` – Get all books.
-- `GET /books/:id` – Get a book by ID.
-- `PUT /books/:id` – Update a book.
-- `DELETE /books/:id` – Delete a book.
-- `DELETE /books` – Delete all books.
-- `POST /books/:id/ratings` – Add a rating to a book.
+- `POST /books/addbook` – Create a new book.
+- `GET /books/` – Get all books.
+- `GET /books/getbook/:id` – Get a book by ID.
+- `PUT /books/update/:id` – Update a book.
+- `DELETE /books/delete/:id` – Delete a book.
+- `DELETE /books/deletebooks` – Delete all books.
+- `POST /books/addrating/:id` – Add a rating to a book.
 
 ## Frontend Usage
 
