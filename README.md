@@ -13,7 +13,6 @@ A full-stack application for managing books, featuring a Node.js/Express/MongoDB
 - [Folder Structure](#folder-structure)
 - [API Endpoints](#api-endpoints)
 - [Frontend Usage](#frontend-usage)
-- [License](#license)
 
 ## Features
 
