@@ -1,6 +1,7 @@
-import { Author } from "./iAuthor";
+import { Author } from "./author";
+
 export interface Book {
-  _id: string;
+  _id?: string;
   name: string;
   description?: string;
   image: string;
@@ -12,5 +13,6 @@ export interface Book {
   publish_date: string;
   views: number;
   inStock: number;
-  ratings?: number[];
+  ratings: number[];
+  averageRating?: number;
 }
