@@ -1,4 +1,4 @@
-# bookmaster.lk
+# Book Store CRUDs
 
 A book store application with basic CRUD functions with a purpose to learn TypeScript.
 
