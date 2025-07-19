@@ -8,7 +8,7 @@ import BookDetail from "../components/book-detail";
 import ConfirmDialog from "../components/confirm-dialog";
 import Button from "../components/button";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5555";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 type ModalType = "add" | "edit" | "view" | null;
 
@@ -21,7 +21,7 @@ const LandingPage: React.FC = () => {
 
   const fetchBooks = async () => {
     try {
-      const res = await axios.get<Book[]>(`${API_URL}/books`);
+      const res = await axios.get<Book[]>(`${API_URL}/books/`);
       setBooks(res.data);
     } catch (err) {
       console.error("Failed to fetch books", err);
@@ -34,7 +34,7 @@ const LandingPage: React.FC = () => {
 
   const handleAdd = async (book: Book) => {
     try {
-      await axios.post(`${API_URL}/books`, book);
+      await axios.post(`${API_URL}/books/addbook`, book);
       await fetchBooks();
     } catch (err) {
       console.error("Failed to add book", err);
@@ -51,7 +51,7 @@ const LandingPage: React.FC = () => {
   const handleEditSave = async (book: Book) => {
     if (!book._id) return;
     try {
-      await axios.put(`${API_URL}/books/${book._id}`, book);
+      await axios.put(`${API_URL}/books/update/${book._id}`, book);
       await fetchBooks();
     } catch (err) {
       console.error("Failed to update book", err);
@@ -72,7 +72,7 @@ const LandingPage: React.FC = () => {
   const handleDeleteConfirm = async () => {
     if (!bookToDelete?._id) return;
     try {
-      await axios.delete(`${API_URL}/books/${bookToDelete._id}`);
+      await axios.delete(`${API_URL}/books/delete/${bookToDelete._id}`);
       await fetchBooks();
     } catch (err) {
       console.error("Failed to delete book", err);
@@ -87,7 +87,7 @@ const LandingPage: React.FC = () => {
 
   const handleDeleteAllConfirm = async () => {
     try {
-      await axios.delete(`${API_URL}/books`);
+      await axios.delete(`${API_URL}/books/deletebooks`);
       await fetchBooks();
     } catch (err) {
       console.error("Failed to delete all books", err);
