@@ -1,4 +1,4 @@
-# Book Manager Application
+# Book Store CRUD with Node.js
 
 A full-stack application for managing books, featuring a Node.js/Express/MongoDB backend and a React/TypeScript/Tailwind CSS frontend.
 
